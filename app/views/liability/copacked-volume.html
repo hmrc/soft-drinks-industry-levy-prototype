@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/phase_banner_alpha.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <!-- EDIT THIS FOR EACH NEW PAGE -->
+      <a href="copacked" class="link-back">Back</a> 
+
+      <form action="/liability/import" method="get" class="form" >
+        <div class="form-group">
+          <fieldset> <!--  class="inline" -->
+
+            <legend>
+              <h1 class="heading-large">
+                How much liable drink does the business have contract packed in the UK on their behalf?
+              </h1>
+            </legend>
+
+            <div class="form-group">
+              <label class="form-label" for="volViaCopacker">
+                <input class="form-control" id="volViaCopacker" type="text" name="volViaCopacker">
+                 litres per year
+              </label>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+      </form>
+
+    </div>
+
+    <div class="column-third">
+      <p>Manufacture? <strong>{{data['manufacture']}}</strong></p>
+      {% if (data['manufacture'] == "Yes") %}
+        <p>Make for: <strong>{{data['manufactureWho']}}</strong></p>
+        <p>Qty. own brand: <strong>{{data['volOwnBrand']}} litres</strong></p>
+        <p>Qty. co-packed for others: <strong>{{data['volCopack']}} litres</strong></p>
+      {% endif %}
+      <p>Use a co-packer: <strong>{{data['useCopacker']}}</strong></p>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

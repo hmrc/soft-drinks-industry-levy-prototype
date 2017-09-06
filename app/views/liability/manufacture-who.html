@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/phase_banner_alpha.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a href="/liability" class="link-back">Back</a> 
+
+      <form action="/liability/manufacture-route-step1" method="get" class="form">
+        <div class="form-group">
+          <fieldset class="inline">
+
+            <legend>
+              <h1 class="heading-large">
+                Who does the business manufacture liable drinks for?
+              </h1>
+              <p>Select one or both</p>
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="manufactureFor1" name="manufactureWho" type="checkbox" value="Own brands" {{ checked("manufactureWho", "Own brands") }}>
+              <label for="manufactureFor1">Their own brands or brands they have rights to manufacture</label>
+            </div>
+
+            <div class="multiple-choice">
+              <input id="manufactureFor2" name="manufactureWho" type="checkbox" value="Contract packer" {{ checked("manufactureWho", "Contract packer") }}>
+              <label for="manufactureFor2">Their customers as a contract packer</label>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+      </form>
+
+    </div>
+
+    <div class="column-third">
+      <p>Manufacture? <strong>{{data['manufacture']}}</strong> {{ manufacture }}</p>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

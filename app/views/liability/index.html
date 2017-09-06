@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/phase_banner_alpha.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <a href="/" class="link-back">Back</a>
+
+      <!-- <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
+
+        <h2 class="heading-medium error-summary-heading" id="error-summary-heading">
+          Message to alert the user to a problem goes here
+        </h2>
+
+        <p>
+          Optional description of the errors and how to correct them
+        </p>
+
+        <ul class="error-summary-list">
+          <li><a href="#example-full-name">Descriptive link to the question with an error</a></li>
+          <li><a href="#example-ni-number">Descriptive link to the question with an error</a></li>
+        </ul>
+
+      </div>  -->
+
+      <form action="/liability/manufacture-who" method="get" class="form">
+        <div class="form-group">
+          <fieldset class="">
+
+            <legend>
+              <h1 class="heading-large">
+                Does the business manufacture liable drinks from a production site they operate?
+              </h1>
+              <!-- <span class="error-message">Error message about this goes here</span> -->
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="manufactureTrue" type="radio" name="manufacture" value="Yes" {{ checked("manufacture", "Yes") }}>
+              <label for="manufactureTrue">Yes</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="manufactureFalse" type="radio" name="manufacture" value="No" {{ checked("manufacture", "No") }}>
+              <label for="manufactureFalse">No</label>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+
+        <!-- <div class="form-group">
+          <a class="button" href="#" role="button">Continue</a>
+        </div> -->
+      </form>
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}

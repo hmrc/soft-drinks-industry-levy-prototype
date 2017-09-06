@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/phase_banner_alpha.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <!-- EDIT THIS FOR EACH NEW PAGE -->
+      <a href="import" class="link-back">Back</a> 
+
+      <form action="/liability/outcome-mandatory" method="get" class="form" >
+        <div class="form-group">
+          <fieldset> <!--  class="inline" -->
+
+            <legend>
+              <h1 class="heading-large">
+                Check your answers
+              </h1>
+            </legend>
+
+            <div class="form-group">
+
+              <table class="check-your-answers">
+
+                <thead>
+                  <tr>
+                    <th colspan="2">
+                      <h2 class="heading-medium">
+                        Liability details for the business
+                      </h2>
+                    </th>
+                    <th>
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>
+                      Manufacture liable drink?
+                    </td>
+                    <td>
+                      {{data['manufacture']}}
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/">
+                        Change <span class="visuallyhidden">manufacture status (yes/no)</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% if (data['manufacture'] == "Yes") %}
+                  <tr>
+                    <td>
+                      Manufacturing purpose
+                    </td>
+                    <td>
+                      <!-- {{data['manufactureWho']}} -->
+                      <ul>
+                      {% for feature in data['manufactureWho'] %}
+                        <li>{{ feature }}</li>
+                      {% endfor %}
+                      </ul>
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-who">
+                        Change <span class="visuallyhidden">manufactured for whom</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if (data['volOwnBrand']) %}
+                  <tr>
+                    <td>
+                      Annual volume business manufactures of own brand
+                    </td>
+                    <td>
+                      {{data['volOwnBrand']}} litres
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-own">
+                        Change <span class="visuallyhidden">volume of own brand</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if (data['volCopack']) %}
+                  <tr>
+                    <td>
+                      Annual volume business manufactures as a contract packer
+                    </td>
+                    <td>
+                      {{data['volCopack']}} litres
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-copack">
+                        Change <span class="visuallyhidden">volume of co-packed for others</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if (data['useCopacker'] == "Yes") %}
+                  <tr>
+                    <td>
+                      Commission a contract packer?
+                    </td>
+                    <td>
+                      {{data['useCopacker']}}
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-who">
+                        Change <span class="visuallyhidden">use of contract packer (yes/no)</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if (data['volViaCopacker']) %}
+                  <tr>
+                    <td>
+                      Annual volume commissioned to contract packers
+                    </td>
+                    <td>
+                      {{data['volViaCopacker']}} litres
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-own">
+                        Change <span class="visuallyhidden">volume commissioned to contract packers</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  {% if (data['import'] == "Yes") %}
+                  <tr>
+                    <td>
+                      Import liable drinks?
+                    </td>
+                    <td>
+                      {{data['import']}}
+                    </td>
+                    <td class="change-answer">
+                      <a href="/liability/manufacture-who">
+                        Change <span class="visuallyhidden">imports (yes/no)</span>
+                      </a>
+                    </td>
+                  </tr>
+                  {% endif %}
+                  
+
+                  <!-- <tr>
+                    <td>
+                      Vehicle features
+                    </td>
+                    <td>
+                      <ul>
+                        {% for feature in data['vehicle-features'] %}
+                          <li>{{ feature }}</li>
+                        {% else %}
+                          <li>No features selected</li>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                    <td class="change-answer">
+                      <a href="/docs/examples/pass-data/vehicle-features">
+                        Change <span class="visuallyhidden">vehicle features</span>
+                      </a>
+                    </td>
+                  </tr> -->
+                </tbody>
+              </table>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+      </form>
+
+    </div>
+
+    <div class="column-third">
+      <!-- <p>Manufacture? <strong>{{data['manufacture']}}</strong></p>
+      <p>Make for: <strong>{{data['manufactureWho']}}</strong></p>
+      <p>Qty. own brand: <strong>{{data['volOwnBrand']}} litres</strong></p>
+      <p>Qty. co-packed for others: <strong>{{data['volCopack']}} litres</strong></p>
+      <p>Use a co-packer: <strong>{{data['useCopacker']}}</strong></p>
+      <p>Qty. via co-packer: <strong>{{data['volViaCopacker']}} litres</strong></p>
+    </div> -->
+  </div>
+</main>
+
+{% endblock %}

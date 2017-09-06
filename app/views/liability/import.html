@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block page_title %}
+  {{serviceName}}
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+  {% include "includes/phase_banner_alpha.html" %}
+
+  <div class="grid-row">
+    <div class="column-two-thirds">
+
+      <!-- EDIT THIS FOR EACH NEW PAGE -->
+      <a href="javascript:history.back();" class="link-back">Back</a> 
+
+      <form action="/liability/check-answers" method="get" class="form" >
+        <div class="form-group">
+          <fieldset> <!--  class="inline" -->
+
+            <legend>
+              <h1 class="heading-large">
+                Does the business import liable drinks into the UK?
+              </h1>
+            </legend>
+
+            <div class="multiple-choice">
+              <input id="importTrue" type="radio" name="import" value="Yes" {{ checked("import", "Yes") }}>
+              <label for="importTrue">Yes</label>
+            </div>
+            <div class="multiple-choice">
+              <input id="importFalse" type="radio" name="import" value="No" {{ checked("import", "No") }}>
+              <label for="importFalse">No</label>
+            </div>
+
+          </fieldset>
+
+        </div>
+
+        <div class="form-group">
+          <input type="submit" class="button" value="Continue">
+        </div>
+      </form>
+
+    </div>
+
+    <div class="column-third">
+      <p>Manufacture? <strong>{{data['manufacture']}}</strong></p>
+      {% if (data['manufacture'] == "Yes") %}
+        <p>Make for: <strong>{{data['manufactureWho']}}</strong></p>
+        <p>Qty. own brand: <strong>{{data['volOwnBrand']}} litres</strong></p>
+        <p>Qty. co-packed for others: <strong>{{data['volCopack']}} litres</strong></p>
+      {% endif %}
+      <p>Use a co-packer: <strong>{{data['useCopacker']}}</strong></p>
+      {% if (data['useCopacker'] == "Yes") %}
+        <p>Qty. via co-packer: <strong>{{data['volViaCopacker']}} litres</strong></p>
+      {% endif %}
+    </div>
+  </div>
+</main>
+
+{% endblock %}
