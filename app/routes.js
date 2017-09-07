@@ -1,6 +1,20 @@
 var express = require('express')
 var router = express.Router()
 
+var session = {
+	litresProduced : 0, // (volOwnBrand)
+	copackedByOtherUk : 0, // (volViaCopacker)
+	copacksForOthers : 0, // (volCopack)
+	imports : false // (import)
+
+	// litresMadeOwn : 0,
+	// litresMadeCopack : 0,
+	// litresProduced : function () {
+	// 	return this.litresMadeOwn + this.litresMadeCopack
+	// }
+
+}
+
 // Route index page
 router.get('/', function (req, res) {
   res.render('index')
